@@ -1,21 +1,21 @@
-import {
-  Box, Container, Divider, Typography,
-} from '@mui/material';
-// import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { Container } from '@mui/material';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Main from '../components/pages/Main';
+import Header from '../components/Header';
+import Line from '../components/Divider';
+// import Auction from '../components/pages/Auction';
 
 function App() {
   return (
     <Container>
-      <Box mt={3} mb={2}>
-        <Typography variant="h1" fontSize="h3.fontSize">
-          Тестовое приложение Аукционы
-        </Typography>
-      </Box>
-
-      <Box mb={3}>
-        <Divider />
-      </Box>
-
+      <Header />
+      <Line />
+      <Router>
+        <Routes>
+          <Route path="/" element={<Main />} />
+          {/* <Route path="/auctions/:id" element={<Auction />} /> */}
+        </Routes>
+      </Router>
     </Container>
   );
 }
