@@ -5,11 +5,13 @@ import {
   CardMedia,
   Typography,
 } from '@mui/material';
+import AuctionCountDown from './AuctionCountDown';
 
 function AuctionsItem({
   title,
   id,
   imgUrl,
+  finishTime,
 }) {
   return (
     <Card sx={{ position: 'relative', maxWidth: 345 }}>
@@ -22,7 +24,7 @@ function AuctionsItem({
         }}
       >
         <Typography id={id}>{title}</Typography>
-        <div>Время</div>
+        <AuctionCountDown finishTime={finishTime} />
       </CardContent>
       <CardMedia
         component="img"
