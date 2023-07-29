@@ -6,12 +6,14 @@ import {
   Typography,
 } from '@mui/material';
 import AuctionCountDown from './AuctionCountDown';
+import Bid from './Bid';
 
 function AuctionsItem({
   title,
   id,
   imgUrl,
   finishTime,
+  bid,
 }) {
   return (
     <Card sx={{ position: 'relative', maxWidth: 345 }}>
@@ -33,6 +35,7 @@ function AuctionsItem({
         height="150"
         sx={{ objectFit: 'cover' }}
       />
+      <Bid bid={bid} />
     </Card>
   );
 }
