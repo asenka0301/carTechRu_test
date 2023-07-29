@@ -2,11 +2,11 @@
 import axios from 'axios';
 import * as types from '../constants/actions';
 
-const fetchAuctions = () => {
+const fetchAuctions = (param) => {
   return (dispatch) => {
     dispatch({ type: types.FETCH_AUCTIONS_REQUEST });
 
-    axios.get(`${process.env.CONFIG.API_BASEPATH}/filterAuctions`, { params: { search: '' } })
+    axios.get(`${process.env.CONFIG.API_BASEPATH}/filterAuctions`, { params: { search: param } })
       .then((response) => {
         dispatch({
           type: types.FETCH_AUCTIONS_SUCCESS,

@@ -11,17 +11,15 @@ function Main() {
   const loading = useSelector((state) => state.auctions.loading);
 
   useEffect(() => {
-    dispatch(fetchAuctions());
+    dispatch(fetchAuctions(''));
   }, [dispatch]);
 
-  return (loading ? <Loader />
-    : (
-      <>
-        <Search />
-        <Line />
-        <AuctionsContainer />
-      </>
-    )
+  return (
+    <>
+      <Search />
+      <Line />
+      {loading ? <Loader /> : <AuctionsContainer />}
+    </>
   );
 }
 
