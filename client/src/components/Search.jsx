@@ -4,7 +4,7 @@ import {
   Box, FormGroup, FormLabel, TextField, InputAdornment, IconButton,
 } from '@mui/material';
 import { Search as SearchIcon } from '@mui/icons-material';
-import fetchAuctions from '../actions';
+import { fetchAuctions } from '../actions';
 
 function Search() {
   const dispatch = useDispatch();

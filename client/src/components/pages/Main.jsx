@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import fetchAuctions from '../../actions';
+import { fetchAuctions } from '../../actions';
 import Search from '../Search';
 import AuctionsContainer from '../AuctionsContainer';
 import Line from '../Divider';
