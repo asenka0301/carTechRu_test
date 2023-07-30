@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Box } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import { fetchAuction } from '../../actions';
 import Loader from '../Loader';
 
@@ -10,6 +10,14 @@ function Auction() {
   const dispatch = useDispatch();
 
   const loading = useSelector((state) => state.auction.loading);
+  const milage = useSelector((state) => {
+    const { mileage } = state.auction.auctionInfo;
+    return mileage;
+  });
+  const auctionInfo = useSelector((state) => {
+    const auctions = state.auctions.auctions_content;
+    return auctions.find((item) => item.id === Number(id));
+  });
 
   useEffect(() => {
     dispatch(fetchAuction(id));
@@ -19,7 +27,17 @@ function Auction() {
     loading
       ? <Loader />
       : (
-        <Box>Auction</Box>
+        <Box>
+          <Typography variant="h5">{`Подробная информация об автомобиле ${auctionInfo.title}`}</Typography>
+          <Box mt={3} sx={{ maxWidth: '100%', display: 'block' }}>
+            <img
+              src={`${process.env.CONFIG.IMAGES_BASEPATH}${auctionInfo.imgUrl}`}
+              alt="car"
+              style={{ width: '50%', height: 'auto' }}
+            />
+          </Box>
+          <Typography mt={3}>{`Пробег: ${milage} км`}</Typography>
+        </Box>
       )
   );
 }
