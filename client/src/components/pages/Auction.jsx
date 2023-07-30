@@ -28,10 +28,10 @@ function Auction() {
       ? <Loader />
       : (
         <Box>
-          <Typography variant="h5">{`Подробная информация об автомобиле ${auctionInfo.title}`}</Typography>
+          <Typography variant="h5">{`Подробная информация об автомобиле ${auctionInfo && auctionInfo.title}`}</Typography>
           <Box mt={3} sx={{ maxWidth: '100%', display: 'block' }}>
             <img
-              src={`${process.env.CONFIG.IMAGES_BASEPATH}${auctionInfo.imgUrl}`}
+              src={`${process.env.CONFIG.IMAGES_BASEPATH}${auctionInfo && auctionInfo.imgUrl}`}
               alt="car"
               style={{ width: '50%', height: 'auto' }}
             />
