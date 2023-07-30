@@ -5,6 +5,7 @@ import {
   CardMedia,
   Typography,
 } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 import AuctionCountDown from './AuctionCountDown';
 import Bid from './Bid';
 
@@ -15,8 +16,13 @@ function AuctionsItem({
   finishTime,
   bid,
 }) {
+  const navigate = useNavigate();
+
   return (
-    <Card sx={{ position: 'relative', maxWidth: 345 }}>
+    <Card
+      sx={{ position: 'relative', maxWidth: 345 }}
+      onClick={() => navigate(`/${id}`)}
+    >
       <CardContent
         sx={{
           display: 'flex',

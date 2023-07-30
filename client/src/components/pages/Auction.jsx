@@ -1,6 +1,10 @@
+import { useParams } from 'react-router-dom';
+
 function Auction() {
+  const { id } = useParams();
+
   return (
-    <div>Auction</div>
+    <div>{id}</div>
   );
 }
 
