@@ -13,7 +13,17 @@ function App() {
 
   useEffect(() => {
     dispatch(fetchAuctions(''));
-  });
+  }, [dispatch]);
+
+  // useEffect(() => {
+  //   const pollingInterval = setInterval(() => {
+  //     const isPolling = true;
+  //     dispatch(fetchAuctions('', isPolling));
+  //   }, 2000);
+  //   return () => {
+  //     clearInterval(pollingInterval);
+  //   };
+  // }, []);
 
   return (
     <Container>

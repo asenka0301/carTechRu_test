@@ -2,9 +2,11 @@
 import axios from 'axios';
 import * as types from '../constants/actions';
 
-export const fetchAuctions = (param) => {
+export const fetchAuctions = (param, isPolling) => {
   return (dispatch) => {
-    dispatch({ type: types.FETCH_AUCTIONS_REQUEST });
+    if (!isPolling) {
+      dispatch({ type: types.FETCH_AUCTIONS_REQUEST });
+    }
 
     axios.get(`${process.env.CONFIG.API_BASEPATH}/filterAuctions`, { params: { search: param } })
       .then((response) => {
