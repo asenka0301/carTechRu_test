@@ -1,48 +1,55 @@
 /* eslint-disable react/prop-types */
+import { useNavigate } from 'react-router-dom';
 import {
   Grid,
+  Card,
+  CardContent,
+  CardMedia,
+  Typography,
 } from '@mui/material';
-import { useSelector } from 'react-redux';
-import AuctionsItem from './AuctionsItem';
-import InfoMessage from './InfoMessage';
 
-function AuctionsContainer() {
-  const auctions = useSelector((state) => state.auctions.auctions_content);
-  const responseError = useSelector((state) => state.auctions.error);
-  const isResponseError = (responseError !== null);
-  const isAuctionsFound = (auctions && auctions.length !== 0);
+import AuctionCountDown from './AuctionCountDown';
+import Bid from './Bid';
 
+function AuctionsContainer({ auctions }) {
+  const navigate = useNavigate();
   return (
-    (isResponseError || !isAuctionsFound)
-      ? <InfoMessage isResponseError={isResponseError} isAuctionsFound={isAuctionsFound} />
-      : (
-        <Grid container spacing={2}>
-          {auctions.map(({
-            title,
-            id,
-            imgUrl,
-            finishTime,
-            bid,
-          }) => (
-            <Grid
-              item
-              xs={12}
-              sm={6}
-              md={4}
-              id={id}
-              key={id}
+    <Grid container spacing={2}>
+      { auctions.map(({
+        title,
+        id,
+        imgUrl,
+        finishTime,
+        bid,
+      }) => (
+        <Grid item xs={12} sm={6} md={4} id={id} key={id}>
+          <Card
+            sx={{ position: 'relative', maxWidth: 345 }}
+            onClick={() => navigate(`/${id}`)}
+          >
+            <CardContent
+              sx={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                bgcolor: 'primary.grey',
+                padding: '10px',
+              }}
             >
-              <AuctionsItem
-                title={title}
-                id={id}
-                imgUrl={imgUrl}
-                finishTime={finishTime}
-                bid={bid}
-              />
-            </Grid>
-          ))}
+              <Typography id={id}>{title}</Typography>
+              <AuctionCountDown finishTime={finishTime} />
+            </CardContent>
+            <CardMedia
+              component="img"
+              src={`${process.env.CONFIG.IMAGES_BASEPATH}${imgUrl}`}
+              alt="Auction_car"
+              height="150"
+              sx={{ objectFit: 'cover' }}
+            />
+            <Bid bid={bid} />
+          </Card>
         </Grid>
-      )
+      ))}
+    </Grid>
   );
 }
 

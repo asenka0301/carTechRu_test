@@ -1,17 +1,18 @@
+// eslint-disable react/prop-types
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
 import {
   Box, FormGroup, FormLabel, TextField, InputAdornment, IconButton,
 } from '@mui/material';
 import { Search as SearchIcon } from '@mui/icons-material';
-import { fetchAuctions } from '../actions';
+import useAuctions from '../hooks';
 
-function Search() {
-  const dispatch = useDispatch();
+function Search({ onSearchChange }) {
+  const { setAuctions } = useAuctions();
   const [inputValue, setInputValue] = useState('');
 
   const handleClick = () => {
-    dispatch(fetchAuctions(inputValue));
+    onSearchChange(inputValue);
+    setAuctions(inputValue);
     setInputValue('');
   };
 
