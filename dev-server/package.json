@@ -1,0 +1,19 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"start": "node index.js",
+		"serv": "nodemon index.js"
+	},
+  "dependencies": {
+		"express": "^4.18.2"
+	},
+	"devDependencies": {
+    "cors": "^2.8.5",
+    "nodemon": "^2.0.15",
+    "nodemon-webpack-plugin": "^4.7.1"
+	}
+}
