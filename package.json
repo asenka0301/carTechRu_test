@@ -7,7 +7,7 @@
   "license": "ISC",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "echo \"There is no build here\" && exit 1",
+    "build": "webpack --config client/builder/webpack/prod.js",
     "dev": "nodemon dev-server/index.js & webpack serve --config client/builder/webpack/dev.js",
     "dev:api": "nodemon babel-cli dev-server/index.js",
     "dev:web": "webpack serve --config client/builder/webpack/dev.js --hot",
