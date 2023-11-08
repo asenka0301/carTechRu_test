@@ -2,7 +2,6 @@
 const webpack = require('webpack');
 const { merge } = require('webpack-merge');
 const common = require('./common');
-const envFile = require('../env/dev.json');
 
 module.exports = merge(common, {
   mode: 'production',
@@ -10,7 +9,13 @@ module.exports = merge(common, {
   plugins: [
     new webpack.DefinePlugin({
       'process.env': {
-        CONFIG: JSON.stringify(envFile),
+        CONFIG: JSON.stringify(
+          {
+            API_BASEPATH: process.env.API_BASEPATH,
+            IMAGES_BASEPATH: process.env.IMAGES_BASEPATH,
+            POLLING_INTERVAL: process.env.POLLING_INTERVAL,
+          },
+        ),
       },
     }),
   ],
