@@ -8,7 +8,7 @@ const app = express();
 
 const corsOptions = {
   credentials: true,
-  origin: 'http://localhost:8080',
+  origin: 'https://cartechru-test.onrender.com/',
 };
 
 app.use(cors(corsOptions));
