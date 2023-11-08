@@ -6,12 +6,7 @@ const endpoints = require('./api/endpoints');
 
 const app = express();
 
-const corsOptions = {
-  credentials: true,
-  origin: 'https://cartechru-test.onrender.com/',
-};
-
-app.use(cors(corsOptions));
+app.use(cors());
 app.use('/images', express.static(path.resolve(__dirname, 'images')));
 
 endpoints.forEach((endpoint) => {
