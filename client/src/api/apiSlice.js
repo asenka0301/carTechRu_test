@@ -6,6 +6,7 @@ export const apiSlice = createApi({
   endpoints: (builder) => ({
     getAuctions: builder.query({
       query: (auction) => `/filterAuctions?search=${auction}`,
+      transformResponse: (response) => response.auctions,
     }),
     getAuction: builder.query({
       query: (auctionId) => `/auction/:${auctionId}`,

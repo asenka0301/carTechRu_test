@@ -5,7 +5,7 @@ import useAuctions from '../../hooks';
 
 import Loader from '../Loader';
 
-const getCarInfo = ({ auctions }, carId) => auctions.find((auction) => auction.id === +carId);
+const getCarInfo = (auctions, carId) => auctions.find((auction) => auction.id === +carId);
 
 function Auction() {
   const { id } = useParams();

@@ -6,12 +6,11 @@ import {
 import { Search as SearchIcon } from '@mui/icons-material';
 import useAuctions from '../hooks';
 
-function Search({ onSearchChange }) {
+function Search() {
   const { setAuctions } = useAuctions();
   const [inputValue, setInputValue] = useState('');
 
   const handleClick = () => {
-    onSearchChange(inputValue);
     setAuctions(inputValue);
     setInputValue('');
   };

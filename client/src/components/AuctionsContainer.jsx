@@ -1,54 +1,31 @@
-import { useNavigate } from 'react-router-dom';
-import {
-  Grid,
-  Card,
-  CardContent,
-  CardMedia,
-  Typography,
-} from '@mui/material';
+import { Box } from '@mui/material';
+import { useGetAuctionsQuery } from '../api/apiSlice';
+import useAuctions from '../hooks';
 
-import AuctionCountDown from './AuctionCountDown';
-import Bid from './Bid';
+import Loader from './Loader';
+import Auctions from './Auctions';
 
-function AuctionsContainer({ auctions }) {
-  const navigate = useNavigate();
+function AuctionsContainer() {
+  const { auctions } = useAuctions();
+
+  const {
+    isLoading,
+    isSuccess,
+    isError,
+  } = useGetAuctionsQuery(auctions);
+
+  let content;
+
+  if (isLoading) {
+    content = <Loader />;
+  } else if (isSuccess) {
+    content = <Auctions />;
+  } else if (isError) {
+    content = <div>Error</div>;
+  }
+
   return (
-    <Grid container spacing={2}>
-      { auctions.map(({
-        title,
-        id,
-        imgUrl,
-        finishTime,
-        bid,
-      }) => (
-        <Grid item xs={12} sm={6} md={4} id={id} key={id}>
-          <Card
-            sx={{ position: 'relative', maxWidth: 345 }}
-            onClick={() => navigate(`/${id}`)}
-          >
-            <CardContent
-              sx={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                bgcolor: 'primary.grey',
-                padding: '10px',
-              }}
-            >
-              <Typography id={id}>{title}</Typography>
-              <AuctionCountDown finishTime={finishTime} />
-            </CardContent>
-            <CardMedia
-              component="img"
-              src={`${process.env.CONFIG.IMAGES_BASEPATH}${imgUrl}`}
-              alt="Auction_car"
-              height="150"
-              sx={{ objectFit: 'cover' }}
-            />
-            <Bid bid={bid} />
-          </Card>
-        </Grid>
-      ))}
-    </Grid>
+    <Box>{content}</Box>
   );
 }
 
